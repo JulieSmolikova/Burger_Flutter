@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const KGreen = Color(0xff163b36);
+const KGreenDark = Color(0xff032822);
+
 const style1 = TextStyle(
     fontSize: 25,
     fontFamily: 'Literata',

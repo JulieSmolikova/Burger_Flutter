@@ -1,6 +1,7 @@
 import 'package:burger/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:burger/button.dart';
+import 'package:burger/buttons.dart';
 
 enum SML {
   S,
@@ -172,24 +173,24 @@ class _BurgerPageState extends State<BurgerPage> {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Button(
-                                                color: selectedButton == SML.S ? Colors.teal.withOpacity(0.9) : Colors.teal.withOpacity(0.5) ,
+                                            Buttons(
+                                                color: selectedButton == SML.S ? KGreenDark.withOpacity(0.7) : KGreenDark.withOpacity(0.9),
                                                 onPress: ((){
                                                   setState(() {
                                                     selectedButton = SML.S;
                                                   });
                                                 }),
                                                 child: const Text('S', style: style4,),),
-                                            Button(
-                                                color: selectedButton == SML.M ? Colors.teal.withOpacity(0.9) : Colors.teal.withOpacity(0.5) ,
+                                            Buttons(
+                                                color: selectedButton == SML.M ? KGreenDark.withOpacity(0.7) : KGreenDark.withOpacity(0.9),
                                                 onPress: ((){
                                                   setState(() {
                                                     selectedButton = SML.M;
                                                   });
                                                 }),
                                                 child: const Text('M', style: style4,),),
-                                            Button(
-                                                color: selectedButton == SML.L ? Colors.teal.withOpacity(0.9) : Colors.teal.withOpacity(0.5) ,
+                                            Buttons(
+                                                color: selectedButton == SML.L ? KGreenDark.withOpacity(0.7) : KGreenDark.withOpacity(0.9),
                                                 onPress: ((){
                                                   setState(() {
                                                     selectedButton = SML.L;
