@@ -15,6 +15,11 @@ const style3 = TextStyle(
     fontFamily: 'Literata',
     color: Colors.white);
 
+const style4 = TextStyle(
+    fontSize: 30,
+    fontFamily: 'Literata',
+    color: Colors.white);
+
 final List burgers = ['Black', 'Cheese', 'Egg', 'Farm', 'Onion', 'Plant'];
 
 final List names = ['New York', 'Big Cheese', 'Egg Morning', 'Ranch Burger', 'Onion Sun', 'Plant Only'];

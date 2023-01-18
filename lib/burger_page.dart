@@ -1,5 +1,12 @@
 import 'package:burger/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:burger/button.dart';
+
+enum SML {
+  S,
+  M,
+  L
+}
 
 class BurgerPage extends StatefulWidget {
   const BurgerPage({Key? key}) : super(key: key);
@@ -9,6 +16,9 @@ class BurgerPage extends StatefulWidget {
 }
 
 class _BurgerPageState extends State<BurgerPage> {
+  bool isLiked = true;
+  dynamic selectedButton;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -117,88 +127,131 @@ class _BurgerPageState extends State<BurgerPage> {
                           ],
                         ),
 
-                        SizedBox(height: 25,),
+                        const SizedBox(height: 25,),
+
+
 
                         Container(
                           width: 370,
                           height: 480,
                           color: Colors.transparent,
-                            child: PageView.builder(
-                              controller: PageController(viewportFraction: 1),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: burgers.length,
-                              itemBuilder: (context, index) {
+                            child: //Stack(
+                              //children: [
+                                PageView.builder(
+                                controller: PageController(viewportFraction: 1),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: burgers.length,
+                                itemBuilder: (context, index) {
 
-                                return Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 45,
-                                      child: Container(
-                                        width: 250,
-                                        height: 250,
-                                        child: Image.asset('assets/images/${burgers[index]}.png', fit: BoxFit.contain,))),
+                                  return Stack (
+                                    children: [
+                                      Positioned(
+                                        top: 45,
+                                        child: Container(
+                                          width: 250,
+                                          height: 250,
+                                          child: Image.asset('assets/images/${burgers[index]}.png', fit: BoxFit.contain,))),
 
-                                    Positioned(
-                                      left: 20,
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text(names[index], style: TextStyle(fontFamily: 'Lemon', fontSize: 35, color: Colors.white),),
-                                          Container(
-                                            width: 45,
-                                            height: 45,
-                                            child: Image.asset('assets/icons/hot.png'),
-                                          )],
-                                      )),
-
-                                    Positioned(
-                                      bottom: 150,
-                                      left: 10,
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 20,
-                                            child: Image.asset('assets/icons/fire.png'),),
-                                          const SizedBox(width: 2,),
-                                          Text(min[index], style: style2),
-                                          const SizedBox(width: 45,),
-                                          Container(
-                                            width: 20,
-                                            child: Image.asset('assets/icons/clock.png'),),
-                                          const SizedBox(width: 4,),
-                                          Text(gram[index], style: style2),
-                                          const SizedBox(width: 45,),
-                                          Container(
-                                            width: 20,
-                                            child: Image.asset('assets/icons/scale.png'),),
-                                          const SizedBox(width: 3,),
-                                          Text(kcal[index], style: style2),
-                                        ],
-                                      )),
-
-                                    Positioned(
-                                        bottom: 0,
-                                        left: 2,
+                                      Positioned(
+                                        left: 20,
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                          Container(
-                                            width: 365,
-                                            height: 140,
-                                            child: Center(
-                                                child: Text(Description[index], style: style3)))
-                                          ],),),
+                                            Text(names[index], style: TextStyle(fontFamily: 'Lemon', fontSize: 35, color: Colors.white),),
+                                            Container(
+                                              width: 45,
+                                              height: 45,
+                                              child: Image.asset('assets/icons/hot.png'),
+                                            )],
+                                        )),
+
+                                      Positioned( top: 45,
+                                        right: -10,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Button(
+                                                color: selectedButton == SML.S ? Colors.teal.withOpacity(0.9) : Colors.teal.withOpacity(0.5) ,
+                                                onPress: ((){
+                                                  setState(() {
+                                                    selectedButton = SML.S;
+                                                  });
+                                                }),
+                                                child: const Text('S', style: style4,),),
+                                            Button(
+                                                color: selectedButton == SML.M ? Colors.teal.withOpacity(0.9) : Colors.teal.withOpacity(0.5) ,
+                                                onPress: ((){
+                                                  setState(() {
+                                                    selectedButton = SML.M;
+                                                  });
+                                                }),
+                                                child: const Text('M', style: style4,),),
+                                            Button(
+                                                color: selectedButton == SML.L ? Colors.teal.withOpacity(0.9) : Colors.teal.withOpacity(0.5) ,
+                                                onPress: ((){
+                                                  setState(() {
+                                                    selectedButton = SML.L;
+                                                  });
+                                                }),
+                                                child: const Text('L', style: style4,),),
+                                          ],
+                                        ),
+                                      ),
+
+                                      Positioned(
+                                        bottom: 150,
+                                        left: 10,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 20,
+                                              child: Image.asset('assets/icons/fire.png'),),
+                                            const SizedBox(width: 2,),
+                                            Text(min[index], style: style2),
+                                            const SizedBox(width: 45,),
+                                            Container(
+                                              width: 20,
+                                              child: Image.asset('assets/icons/clock.png'),),
+                                            const SizedBox(width: 4,),
+                                            Text(gram[index], style: style2),
+                                            const SizedBox(width: 45,),
+                                            Container(
+                                              width: 20,
+                                              child: Image.asset('assets/icons/scale.png'),),
+                                            const SizedBox(width: 3,),
+                                            Text(kcal[index], style: style2),
 
 
-                                  ],);}
-                            ),),
+                                          ],
+                                        )),
 
+                                      Positioned(
+                                          bottom: 0,
+                                          left: 2,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                            Container(
+                                              width: 365,
+                                              height: 140,
+                                              child: Center(
+                                                  child: Text(Description[index], style: style3)))
+                                            ],),),
+
+                                    ],);}
+                                ),
+
+                              //],),
+
+                        ),
 
                         //Row(),
+
                       ],
                     ),
                   ),
