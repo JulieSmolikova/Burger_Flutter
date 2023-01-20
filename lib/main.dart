@@ -14,15 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-
         '/start_page': (context) => const StartPage(),
         '/burger_page': (context) => const BurgerPage(),
       },
-
       initialRoute: '/start_page',
-
       home: Scaffold(),
-
     );
   }
 }

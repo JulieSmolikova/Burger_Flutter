@@ -6,84 +6,36 @@ class Buttons extends StatefulWidget {
   final Function() onPress;
   final Widget child;
 
-  const Buttons({Key? key,
-    required this.color,
-    required this.onPress,
-    required this.child}) : super(key: key);
+  const Buttons(
+      {Key? key,
+      required this.color,
+      required this.onPress,
+      required this.child})
+      : super(key: key);
 
   @override
   State<Buttons> createState() => _ButtonsState();
 }
 
 class _ButtonsState extends State<Buttons> {
-  bool isPressed = false;
-  Color color;
-
-
-  void _isPressed(){
-    setState(() {
-      isPressed =!isPressed;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-
-      onTapDown: (_) {
-        setState(() {
-          _isPressed();
-          widget.onPress.call();
-        });
-      },
-
-      onTapUp: (_) {
-        setState(() {
-          _isPressed();
-        });
-      },
-
-      onTapCancel: () {
-        setState(() {
-          _isPressed();
-        });
-      },
-
+      onTap: widget.onPress,
       child: Container(
         width: 50,
-          height: 50,
-          margin: const EdgeInsets.all(15),
-          decoration: BoxDecoration(
-            color: color,
-            border: Border.all(color: Colors.white70, width: 2),
+        height: 50,
+        margin: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+            color: widget.color,
+            border: Border.all(color: Colors.white24, width: 2),
             borderRadius: BorderRadius.circular(10),
-            boxShadow: isPressed ? [
-            const BoxShadow(
-            color: Colors.red,
-            blurRadius: 15,
-            offset: Offset(3, 3)),
-            const BoxShadow(
-            color: Colors.red,
-            blurRadius: 15,
-            offset: Offset(-3, -3)
-            )
-            ] : [
-            const BoxShadow(
-              color: KGreen,
-              blurRadius: 15,
-              offset: Offset(5, 5)
-            ),
-            const BoxShadow(
-              color: Colors.yellow,
-              blurRadius: 15,
-              offset: Offset(-5, -5)
-            )
-            ]
-            ),
-          child: Center(child: child),
+            boxShadow: [
+              BoxShadow(color: Colors.black, blurRadius: 10, offset: Offset(4, 4)),
+              BoxShadow(color: Colors.teal.shade900, blurRadius: 10, offset: Offset(-4, -4))
+            ]),
+        child: Center(child: widget.child),
       ),
-
-
     );
   }
 }
